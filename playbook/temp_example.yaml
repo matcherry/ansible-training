@@ -1,0 +1,27 @@
+---
+- hosts: ubuntu
+  become: yes
+  vars:
+    page_title: My Landing Page
+    page_description: This is my landing page description.
+  tasks:
+  - name: make directory
+    file:
+      path: /var/www/html/
+      state: directory
+  
+  - name: Install Nginx
+    apt:
+        name: nginx
+        state: latest
+
+  - name: Apply Page Template
+    template:
+        src:  ~/.ansible/templates/landing-page.html.j2
+        dest: /var/www/html/index.nginx-debian.html
+
+  - name: Allow all access to tcp port 80
+    ufw:
+        rule: allow
+        port: '80'
+        proto: tcp    
