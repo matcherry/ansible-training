@@ -1,0 +1,22 @@
+---
+- name: playbook for installing and starting apache package
+  hosts: nodes
+  remote_user: ec2-user
+  become: true
+  become_user: root
+  vars: 
+    webserver_message: "I am running to the finish line."
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present      
+    - name: Start httpd service
+      service:
+        name: httpd
+        state: started
+
+    - name: Create index.html using Jinja2
+      template:
+        src: index.j2
+        dest: /var/www/html/index.html 

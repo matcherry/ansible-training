@@ -1,0 +1,14 @@
+---
+- hosts: ubuntu
+  tasks:
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: "this task runs before the example role"
+
+    - name: Include the example role
+      include_role:
+        name: "example"
+
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: "this task runs after the example role"

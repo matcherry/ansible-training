@@ -1,0 +1,6 @@
+localhost ansible_connection=local
+
+[ec2]
+ec21 ansible_ssh_host=ec2-user@54.163.164.175
+ec22 ansible_ssh_host=ec2-user@44.203.69.36
+ec23 ansible_ssh_host=ec2-user@54.211.39.212

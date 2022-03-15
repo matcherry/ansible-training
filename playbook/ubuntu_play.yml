@@ -1,0 +1,95 @@
+---
+- name: ubuntuPlay
+  hosts: ubuntu
+  remote_user: ubuntu
+  become: true
+  become_user: root
+  
+  tasks:
+  - name: Updata and upgrade
+    apt:
+      upgrade: yes
+      update_cache: yes
+      
+  - name: Install packages
+    apt:
+      name:
+      - ntpdate
+      - nmap
+      state: latest
+
+  - name: Echo the Date to a tmp file
+    shell: echo  "`date`"> /tmp/date
+
+  - name: Echo String to a tmp file
+    shell: echo  "tokopedia is a greate ecomerce" > /tmp/tokopedia
+  
+  #- name: install the latest version of Python-pip
+  #  yum:
+  #      name: python-pip
+  #      state: latest
+  #  notify:
+  #  - ensure Python-pip
+  
+  - name: make directory
+    file:
+      path: /tmp/ubuntu_directory
+      state: directory
+
+  - name: make an empty file
+    file:
+      path: /tmp/ubuntu_directory/sample.txt
+      state: touch
+  
+  - name: create multiple files
+    file: 
+      path: /tmp/ubuntu_directory/{{ item }}
+      state: touch
+    with_items:
+    - test01.txt
+    - test02.txt
+    - test03.txt
+    - test04.txt
+  
+  - name: create sample-content txt
+    copy:
+      content: |
+           This is test content
+      dest: /tmp/ubuntu_directory/sample.txt
+  
+  - name: Removing a file
+    file:
+      path: /tmp/ubuntu_directory/test04.txt
+      state: absent
+  
+  # - name: Create a new file with permissions
+  #   file:
+  #     path: /tmp/ubuntu_directory/test05.txt
+  #     state: touch
+  #     mode: 0755
+  #     owner: test
+
+  - name: install apache
+    package:
+        name: httpd
+        state: latest
+    notify:
+    - ensure apache is running
+  
+  - name: Print a debug message
+    debug:
+      msg: "islnk isn't defined (path doesn't exist)"
+      when: sym.stat.islnk is not defined
+  
+  handlers:
+  - name: ensure apache is running
+    service:
+     name: httpd
+     state: restarted
+     msg: restarting apache
+  
+#  - name: Just get the list from default pip
+#    community.general.pip_package_info: 
+       
+
+

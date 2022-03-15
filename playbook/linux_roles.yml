@@ -1,0 +1,11 @@
+- hosts: linux 
+  remote_user: ec2-user  
+  become: yes  
+  become: true
+  become_user: root
+  vars: 
+    name: nginx_variable
+    vars_files: 
+      - nginx-vars.yml
+  roles:   
+   - nginx 

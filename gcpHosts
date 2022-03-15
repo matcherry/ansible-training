@@ -1,0 +1,3 @@
+[ubuntu]
+gcp1  ansible_ssh_host=daniaputri99@gcp1
+#ubuntu2 ansible_ssh_host=ubuntu@100.24.9.139 

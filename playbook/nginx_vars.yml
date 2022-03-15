@@ -1,0 +1,3 @@
+  key_file: /etc/nginx/ssl/nginx.key 
+  port: 443
+  server_name: localhost

@@ -1,0 +1,14 @@
+---
+all:
+  hosts:
+    mail.example.com: localhost ansible_connection=local
+  children:
+    webservers:
+      hosts:
+        foo.example.com: 54.163.164.175
+        bar.example.com:
+    dbservers:
+      hosts:
+        one.example.com:
+        two.example.com:
+        three.example.com:

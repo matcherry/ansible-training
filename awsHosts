@@ -1,0 +1,13 @@
+[ubuntu]
+ubuntu1 ansible_ssh_host=ubuntu@34.227.26.198
+ubuntu2 ansible_ssh_host=ubuntu@44.202.55.243
+
+[linux]
+linux1 ansible_ssh_host=ec2-user@54.225.6.35
+linux2 ansible_ssh_host=ec2-user@52.91.88.226
+
+[db_server]
+db_server_1 ansible_ssh_host=ubuntu@54.158.129.87 
+db_server_2 ansible_ssh_host=ubuntu@3.94.210.1
+
+

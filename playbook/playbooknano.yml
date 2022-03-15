@@ -1,0 +1,11 @@
+---
+- name: install nano
+  hosts: ec2
+  remote_user: ec2-user
+  tasks: 
+  - name: installing nano
+    yum: pkg=nano state=installed
+  - name: get wget
+    yum:
+        name: wget
+        state: latest

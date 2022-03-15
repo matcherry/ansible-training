@@ -1,0 +1,19 @@
+---
+- name: nginx playbook
+  hosts: ec2
+  remote_user: ec2-user
+  vars: 
+  - server_port: 80
+
+  tasks: 
+  - name: installing nginx
+    yum: pkg=nginx state=installed
+  
+  - name: serve nginx config
+    template: src= ../files/flask.conf dest=/etc/nginx/conf.d/
+    notify:
+    - restart nginx
+
+  handlers:
+  - name: restart nginx
+    service: name=nginx state=restarted

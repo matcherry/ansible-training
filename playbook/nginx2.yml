@@ -1,0 +1,11 @@
+---
+- name: nginx playbook
+  hosts: ec21
+  remote_user: ec2-user
+  
+  tasks: 
+  - name: pull nginx image
+    docker_image:
+        name: nginx
+        tags: latest
+

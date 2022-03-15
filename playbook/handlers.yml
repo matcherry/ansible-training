@@ -1,0 +1,74 @@
+---
+- name: install nano
+  hosts: ec2
+  remote_user: ec2-user
+  become: true
+  become_user: root
+  
+  tasks: 
+  - name: installing nano
+    yum: pkg=nano state=installed
+    notify:
+    - touch nanofile
+
+  - name: get wget
+    yum:
+        name: wget
+        state: latest
+    notify:
+    - touch wgetfile
+
+  - name: install the latest version of Python-pip
+    yum:
+        name: python-pip
+        state: latest
+  
+  - name: Install Java 
+    yum:
+        name: java
+        state: latest
+  
+#  - name: Install tomcat server
+
+  - name: install apache
+    yum:
+        name: httpd
+        state: latest
+    notify:
+    - ensure apache is running
+  
+  - name: install nginx
+    yum:
+        name: nginx
+        state: latest
+    notify:
+    - ensure nginx is running
+  
+  handlers:
+  - name: touch nanofile
+    ansible.builtin.file:
+      path: /usr/nanofile.txt
+      state: touch
+
+  - name: touch wgetfile
+    ansible.builtin.file:
+      path: /usr/wget.txt
+      state: touch    
+
+  - name: ensure apache is running
+    service:
+     name: httpd
+     state: restarted
+     msg: restarting apache
+
+  - name: ensure nginx is running
+    service:
+     name: nginx
+     state: restarted
+     msg: restarting nginx
+     
+#  - name: ensure java is running
+#    service:
+#     name: java
+#     state: restarted
+#     msg: restarting java
