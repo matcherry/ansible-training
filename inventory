@@ -1,5 +1,5 @@
-[nodes]
-node1 ansible_ssh_host=ec2-user@54.225.6.35
-node2 ansible_ssh_host=ec2-user@52.91.88.226
+[node]
+node1 ansible_ssh_host=ec2-user@54.210.74.150
+node2 ansible_ssh_host=ec2-user@23.22.175.79
 
 
