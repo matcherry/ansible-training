@@ -137,3 +137,6 @@ Ansible uses Jinja2 templating to enable dynamic expressions and access to [var
 . For example, you can create a template for a configuration file, then deploy that configuration file to multiple environments and supply the correct data (IP address, hostname, version) for each environment. You can also use templating in playbooks directly, by templating task names and more. You can use all the [standard filters and tests](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters)
  included in Jinja2. Ansible includes additional specialized filters for selecting and transforming data, tests for evaluating template expressions, and [Lookup plugins](https://docs.ansible.com/ansible/latest/plugins/lookup.html#lookup-plugins)
  for retrieving data from external sources such as files, APIs, and databases for use in templating.
+ 
+ https://docs.ansible.com/ansible/2.5/user_guide/playbooks_templating.html
+ https://blog.knoldus.com/deploying-custom-files-with-ansible-jinja2-templates/
